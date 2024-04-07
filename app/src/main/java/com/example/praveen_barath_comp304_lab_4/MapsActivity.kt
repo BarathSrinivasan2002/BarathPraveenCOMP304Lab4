@@ -61,6 +61,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val location = LatLng(latitude, longitude)
         mMap.addMarker(MarkerOptions().position(location).title("$landmarkName $landmarkAddress $latitude $longitude"))
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(location))
+        mMap.mapType = GoogleMap.MAP_TYPE_HYBRID
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
     }
 
