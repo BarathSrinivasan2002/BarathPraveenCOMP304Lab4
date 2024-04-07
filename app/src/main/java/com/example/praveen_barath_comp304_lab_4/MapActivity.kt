@@ -23,6 +23,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityMapBinding
     private var latitude by Delegates.notNull<Double>()
     private var longitude by Delegates.notNull<Double>()
+    private lateinit var  landmarkName : String
+    private lateinit var  landmarkAddress : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,8 +52,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         This data we got from previous activity
         */
         var landmarkType = intent.getStringExtra("TYPE")
-        var landmarkName = intent.getStringExtra("LANDMARK_NAME")
-        var landmarkAddress = intent.getStringExtra("ADDRESS")
+        landmarkName = intent.getStringExtra("LANDMARK_NAME").toString()
+        landmarkAddress = intent.getStringExtra("ADDRESS").toString()
         latitude = intent.getDoubleExtra("LATITUDE", 0.0)
         longitude= intent.getDoubleExtra("LONGITUDE", 0.0)
 
@@ -74,34 +76,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Retrieve latitude and longitude from intent
-
-
         val location = LatLng(latitude, longitude)
-        mMap.addMarker(MarkerOptions().position(location).title("Marker"))
+        mMap.addMarker(MarkerOptions().position(location).title(landmarkName))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location))
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
     }
 
-    override fun onResume() {
-        super.onResume()
-        mapView.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        mapView.onPause()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        mapView.onDestroy()
-    }
-
-    override fun onLowMemory() {
-        super.onLowMemory()
-        mapView.onLowMemory()
-    }
 
 
 }

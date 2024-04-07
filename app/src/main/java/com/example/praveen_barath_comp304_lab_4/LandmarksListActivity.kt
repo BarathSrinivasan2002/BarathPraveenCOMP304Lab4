@@ -39,7 +39,7 @@ class LandmarksListActivity : AppCompatActivity(), LandmarkAdapter.RecyclerViewE
         landmarkType.toString()
         val landmark = getLandmarksByType(landmarkType)[position]
         Toast.makeText(this, landmark.latitude, Toast.LENGTH_LONG).show()
-        val intent = Intent(this@LandmarksListActivity, MapActivity::class.java)
+        val intent = Intent(this@LandmarksListActivity, MapsActivity::class.java)
         intent.putExtra("TYPE", landmarkType)
         intent.putExtra("LANDMARK_NAME", landmark.name)
         intent.putExtra("ADDRESS", landmark.address)
